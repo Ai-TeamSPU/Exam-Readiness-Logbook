@@ -21,7 +21,8 @@ function doGet(e) {
   const result = {
     tasks: readData('Tasks'),
     issues: readData('Issues'),
-    logs: readData('Logs')
+    logs: readData('Logs'),
+    staff: readData('Staff')
   };
   
   return ContentService.createTextOutput(JSON.stringify(result))

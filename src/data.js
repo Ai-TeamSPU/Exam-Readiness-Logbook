@@ -7,7 +7,7 @@ export const PHASES = [
   { id: "post-exam", label: "Post-Exam", labelTh: "หลังสอบ", range: "T+1 → T+21", dot: "var(--phase-post)" },
 ];
 
-export const STAFF = ["เลือกผู้ปฏิบัติ", "คุณ ณัฐา", "คุณ พิชัย", "คุณ สุรีย์", "หัวหน้างาน", "ผช.ผอ. สำนักวิชาการ"];
+export const STAFF = ["เลือกผู้ปฏิบัติ"];
 
 export const OWNER_FILTERS = [
   { key: "all", label: "ทุกหน่วยงาน" },
@@ -44,8 +44,8 @@ export function daysUntilExam() {
   return Math.ceil(ms / (1000 * 60 * 60 * 24));
 }
 
-// 🛑 วาง URL ที่ได้จากขั้นตอน Deploy Google Apps Script (Web App) ลงที่นี่
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyBOvhjjn-4_gqcXBTZ31TQwpENTfo5kwg-KvdUqDhRnwqMTS7oMOhHe9tan1NydYrh/exec';
+//URL ที่ได้จากขั้นตอน Deploy Google Apps Script (Web App) ลงที่นี่
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzB2Kwzcrve3kI25zKwlT_nM6dLDg8LLOmrjI6MNwx64dfljFXnHsEr7UvzMMRSdvxp/exec';
 
 // ข้อมูลเริ่มต้นเผื่อ Google Sheet ว่างเปล่า
 const INITIAL_TASKS = [
@@ -96,6 +96,7 @@ export function useBackendState() {
         tasks: normalizedTasks,
         issues: data.issues || [],
         logs: data.logs || [],
+        staffList: data.staff?.length > 0 ? ["เลือกผู้ปฏิบัติ", ...data.staff.map(s => Object.values(s)[0])] : STAFF,
         loading: false
       }));
     } catch (err) {
